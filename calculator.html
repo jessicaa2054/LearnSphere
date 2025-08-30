@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Planner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .view-options {
+            display: flex;
+            background: var(--light);
+            border-radius: 50px;
+            padding: 5px;
+        }
+        
+        .view-option {
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .view-option.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .planner-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .planner-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+        }
+        
+        .sidebar h2 {
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .task-form {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+        }
+        
+        .weekly-stats {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stat-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .planner-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .week-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .week-range {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--light);
+            color: var(--dark);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .days-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+        }
+        
+        @media (max-width: 1100px) {
+            .days-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .days-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .days-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .day-column {
+            background: var(--light);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            min-height: 500px;
+        }
+        
+        .day-header {
+            text-align: center;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .day-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .day-date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .tasks-container {
+            min-height: 400px;
+        }
+        
+        .task-block {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            cursor: move;
+            transition: var(--transition);
+        }
+        
+        .task-block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .task-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        .task-time, .task-category {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .task-category {
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .category-work {
+            background: #e6f7ff;
+            color: #0066cc;
+        }
+        
+        .category-personal {
+            background: #f0f9eb;
+            color: #67c23a;
+        }
+        
+        .category-study {
+            background: #fef6e6;
+            color: #cc8500;
+        }
+        
+        .category-health {
+            background: #ffe6e6;
+            color: #cc0000;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray);
+        }
+        
+        .empty-state i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Drag and drop styling */
+        .task-block.dragging {
+            opacity: 0.5;
+            background: #f0f9ff;
+        }
+        
+        .day-column.drop-zone {
+            background: #f0f9ff;
+            border: 2px dashed var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-calendar-week"></i>
+                <h1>Weekly Planner</h1>
+            </div>
+            <div class="view-options">
+                <div class="view-option active">Week</div>
+                <div class="view-option">Month</div>
+                <div class="view-option">Day</div>
+            </div>
+        </header>
+        
+        <div class="planner-container">
+            <div class="sidebar">
+                <h2>Add New Task</h2>
+                <div class="task-form">
+                    <div class="form-group">
+                        <label for="task-title">Task Title</label>
+                        <input type="text" id="task-title" placeholder="What needs to be done?">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-category">Category</label>
+                        <select id="task-category">
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="study">Study</option>
+                            <option value="health">Health</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-time">Time</label>
+                        <input type="time" id="task-time">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="task-day">Day</label>
+                        <select id="task-day">
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="friday">Friday</option>
+                            <option value="saturday">Saturday</option>
+                            <option value="sunday">Sunday</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary">Add Task</button>
+                </div>
+                
+                <div class="weekly-stats">
+                    <h2>Weekly Stats</h2>
+                    <div class="stat-item">
+                        <span>Total Tasks:</span>
+                        <span class="stat-value">18</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Completed:</span>
+                        <span class="stat-value">12</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>In Progress:</span>
+                        <span class="stat-value">4</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Not Started:</span>
+                        <span class="stat-value">2</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="planner-content">
+                <div class="week-navigation">
+                    <div class="week-range">September 4 - September 10, 2023</div>
+                    <div class="nav-buttons">
+                        <button class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+                        <button class="nav-btn"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+                
+                <div class="days-container">
+                    <!-- Monday -->
+                    <div class="day-column" id="monday">
+                        <div class="day-header">
+                            <div class="day-name">Monday</div>
+                            <div class="day-date">Sep 4</div>
+                        </div>
+                        <div class="tasks-container">
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Team Meeting</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 9:00 AM</span>
+                                    <span class="task-category category-work">Work</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Project Planning</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 11:00 AM</span>
+                                    <span class="task-category category-work">Work</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Gym Session</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 6:00 PM</span>
+                                    <span class="task-category category-health">Health</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tuesday -->
+                    <div class="day-column" id="tuesday">
+                        <div class="day-header">
+                            <div class="day-name">Tuesday</div>
+                            <div class="day-date">Sep 5</div>
+                        </div>
+                        <div class="tasks-container">
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Client Call</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 10:30 AM</span>
+                                    <span class="task-category category-work">Work</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Online Course</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 2:00 PM</span>
+                                    <span class="task-category category-study">Study</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wednesday -->
+                    <div class="day-column" id="wednesday">
+                        <div class="day-header">
+                            <div class="day-name">Wednesday</div>
+                            <div class="day-date">Sep 6</div>
+                        </div>
+                        <div class="tasks-container">
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Doctor Appointment</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 11:00 AM</span>
+                                    <span class="task-category category-health">Health</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Lunch with Friends</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 1:00 PM</span>
+                                    <span class="task-category category-personal">Personal</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Read Book</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 8:00 PM</span>
+                                    <span class="task-category category-personal">Personal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Thursday -->
+                    <div class="day-column" id="thursday">
+                        <div class="day-header">
+                            <div class="day-name">Thursday</div>
+                            <div class="day-date">Sep 7</div>
+                        </div>
+                        <div class="tasks-container">
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Project Deadline</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 12:00 PM</span>
+                                    <span class="task-category category-work">Work</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Yoga Class</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 6:30 PM</span>
+                                    <span class="task-category category-health">Health</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Friday -->
+                    <div class="day-column" id="friday">
+                        <div class="day-header">
+                            <div class="day-name">Friday</div>
+                            <div class="day-date">Sep 8</div>
+                        </div>
+                        <div class="tasks-container">
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Weekly Review</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 9:00 AM</span>
+                                    <span class="task-category category-work">Work</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Movie Night</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 7:00 PM</span>
+                                    <span class="task-category category-personal">Personal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Saturday -->
+                    <div class="day-column" id="saturday">
+                        <div class="day-header">
+                            <div class="day-name">Saturday</div>
+                            <div class="day-date">Sep 9</div>
+                        </div>
+                        <div class="tasks-container">
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Grocery Shopping</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 10:00 AM</span>
+                                    <span class="task-category category-personal">Personal</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">House Cleaning</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 2:00 PM</span>
+                                    <span class="task-category category-personal">Personal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sunday -->
+                    <div class="day-column" id="sunday">
+                        <div class="day-header">
+                            <div class="day-name">Sunday</div>
+                            <div class="day-date">Sep 10</div>
+                        </div>
+                        <div class="tasks-container">
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Family Brunch</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 11:00 AM</span>
+                                    <span class="task-category category-personal">Personal</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Plan Next Week</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 4:00 PM</span>
+                                    <span class="task-category category-work">Work</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-block" draggable="true">
+                                <div class="task-title">Reading Time</div>
+                                <div class="task-details">
+                                    <span class="task-time"><i class="far fa-clock"></i> 8:00 PM</span>
+                                    <span class="task-category category-study">Study</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Weekly Planner © 2023 | Organize Your Week Efficiently</p>
+        </footer>
+    </div>
+
+    <script>
+        // Drag and drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tasks = document.querySelectorAll('.task-block');
+            const columns = document.querySelectorAll('.day-column');
+            
+            let draggedTask = null;
+            
+            tasks.forEach(task => {
+                task.addEventListener('dragstart', function() {
+                    draggedTask = this;
+                    setTimeout(() => {
+                        this.classList.add('dragging');
+                    }, 0);
+                });
+                
+                task.addEventListener('dragend', function() {
+                    this.classList.remove('dragging');
+                    draggedTask = null;
+                });
+            });
+            
+            columns.forEach(column => {
+                column.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
+                
+                column.addEventListener('dragenter', function(e) {
+                    e.preventDefault();
+                    this.classList.add('drop-zone');
+                });
+                
+                column.addEventListener('dragleave', function() {
+                    this.classList.remove('drop-zone');
+                });
+                
+                column.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.classList.remove('drop-zone');
+                    
+                    if (draggedTask) {
+                        this.querySelector('.tasks-container').appendChild(draggedTask);
+                        
+                        // Show notification
+                        const dayName = this.querySelector('.day-name').textContent;
+                        alert(`Task moved to ${dayName}`);
+                    }
+                });
+            });
+            
+            // Add task functionality
+            const addTaskButton = document.querySelector('.btn-primary');
+            addTaskButton.addEventListener('click', function() {
+                const taskTitle = document.getElementById('task-title').value;
+                const taskCategory = document.getElementById('task-category').value;
+                const taskTime = document.getElementById('task-time').value;
+                const taskDay = document.getElementById('task-day').value;
+                
+                if (taskTitle) {
+                    // Create new task element
+                    const newTask = document.createElement('div');
+                    newTask.className = 'task-block';
+                    newTask.draggable = true;
+                    
+                    // Format time for display
+                    const timeParts = taskTime.split(':');
+                    const hours = timeParts[0];
+                    const minutes = timeParts[1];
+                    const formattedTime = `${hours}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`;
+                    
+                    // Get category class and text
+                    let categoryClass = 'category-work';
+                    let categoryText = 'Work';
+                    
+                    if (taskCategory === 'personal') {
+                        categoryClass = 'category-personal';
+                        categoryText = 'Personal';
+                    } else if (taskCategory === 'study') {
+                        categoryClass = 'category-study';
+                        categoryText = 'Study';
+                    } else if (taskCategory === 'health') {
+                        categoryClass = 'category-health';
+                        categoryText = 'Health';
+                    }
+                    
+                    newTask.innerHTML = `
+                        <div class="task-title">${taskTitle}</div>
+                        <div class="task-details">
+                            <span class="task-time"><i class="far fa-clock"></i> ${formattedTime}</span>
+                            <span class="task-category ${categoryClass}">${categoryText}</span>
+                        </div>
+                    `;
+                    
+                    // Add drag events to the new task
+                    newTask.addEventListener('dragstart', function() {
+                        draggedTask = this;
+                        setTimeout(() => {
+                            this.classList.add('dragging');
+                        }, 0);
+                    });
+                    
+                    newTask.addEventListener('dragend', function() {
+                        this.classList.remove('dragging');
+                        draggedTask = null;
+                    });
+                    
+                    // Add to the selected day
+                    document.querySelector(`#${taskDay} .tasks-container`).appendChild(newTask);
+                    
+                    // Reset form
+                    document.getElementById('task-title').value = '';
+                    document.getElementById('task-time').value = '';
+                    
+                    // Show success message
+                    alert('Task added successfully!');
+                } else {
+                    alert('Please enter a task title');
+                }
+            });
+            
+            // View options
+            document.querySelectorAll('.view-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.view-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-chevron-left')) {
+                        alert('Previous week');
+                    } else if (icon.classList.contains('fa-chevron-right')) {
+                        alert('Next week');
+                    } else if (icon.classList.contains('fa-sync-alt')) {
+                        alert('Refresh planner');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
