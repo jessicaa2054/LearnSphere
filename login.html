@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — LearnSphere</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+</head>
+<body class="bg-gray-100 dark:bg-gradient-to-br dark:from-[#0f172a] dark:via-[#1e1b4b] dark:to-[#312e81] text-gray-900 dark:text-white flex items-center justify-center min-h-screen">
+  
+  <!-- Navbar -->
+  <header id="navbar" class="navbar fixed top-0 left-0 w-full z-50 bg-transparent transition-all duration-500">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      
+      <!-- Logo -->
+      <div class="text-2xl font-bold text-indigo-600 dark:text-indigo-500 hover:scale-105 transition-transform duration-300 cursor-pointer">
+        LearnSphere
+      </div>
+
+      <!-- Menu -->
+      <nav id="menu" class="hidden md:flex space-x-8 text-gray-700 dark:text-gray-300 font-medium">
+        <a href="dashboard.html" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Dashboard</a>
+        <a href="#features" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Features</a>
+        <a href="#solutions" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Solutions</a>
+        <a href="#how" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">How It Works</a>
+        <a href="#testimonials" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Testimonials</a>
+      </nav>
+
+      <!-- CTA -->
+      <a href="signup.html"
+         class="hidden md:inline-block bg-indigo-600 px-5 py-2 rounded-lg text-white shadow hover:bg-indigo-500 transition transform hover:scale-105">
+        Get Started
+      </a>
+
+      <!-- Mobile menu button -->
+      <button id="menu-btn" class="md:hidden text-gray-700 dark:text-gray-300 focus:outline-none hover:scale-110 transition-transform">
+        ☰
+      </button>
+
+      <!-- Dark/Light Toggle -->
+      <button id="theme-toggle" class="ml-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-1 rounded hover:scale-110 transition-transform">
+        🌙
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden flex flex-col bg-white dark:bg-gray-800 px-6 py-4 space-y-4 text-gray-700 dark:text-gray-300">
+      <a href="dashboard.html" class="hover:text-indigo-600 dark:hover:text-indigo-400">Dashboard</a>
+      <a href="#features" class="hover:text-indigo-600 dark:hover:text-indigo-400">Features</a>
+      <a href="#solutions" class="hover:text-indigo-600 dark:hover:text-indigo-400">Solutions</a>
+      <a href="#how" class="hover:text-indigo-600 dark:hover:text-indigo-400">How It Works</a>
+      <a href="#testimonials" class="hover:text-indigo-600 dark:hover:text-indigo-400">Testimonials</a>
+      <a href="signup.html" class="bg-indigo-600 px-5 py-2 rounded-lg text-white shadow hover:bg-indigo-500 transition">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Card -->
+  <div class="w-full max-w-md bg-white dark:bg-[#1e1b4b] rounded-2xl shadow-xl shadow-[0_0_20px_rgba(99,102,241,0.5)] p-8 mt-20 border border-indigo-500/20">
+    <h2 class="text-3xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Login in to LearnSphere</h2>
+
+    <div class="space-y-4">
+      <!-- Email -->
+      <input type="email" id="loginEmail" placeholder="Email address"
+        class="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#1e1b4b] border border-indigo-500/30 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition" />
+
+      <!-- Password -->
+      <input type="password" id="loginPass" placeholder="Password"
+        class="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#1e1b4b] border border-indigo-500/30 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-300 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition" />
+
+      <!-- Button -->
+      <button id="loginBtn"
+        class="w-full py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 font-semibold text-white shadow-md transition">
+        Log In
+      </button>
+
+      <!-- Links -->
+      <div class="text-center text-sm text-gray-600 dark:text-gray-400 mt-2">
+        <a href="forgot.html" class="text-indigo-400 hover:text-indigo-300 transition-colors">Forgot Password?</a>
+      </div>
+
+      <div class="text-center text-sm text-gray-600 dark:text-gray-400">
+        No account? <a href="signup.html" class="text-indigo-400 hover:text-indigo-300 transition-colors">Create one</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Mock Login
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPass').value.trim();
+
+      if (!email || !pass) {
+        alert("⚠️ Please enter both email and password.");
+        return;
+      }
+
+      localStorage.setItem('ls_user', JSON.stringify({ email }));
+      location.href = "dashboard.html";
+    });
+
+    // Dark/Light Toggle
+    const toggleBtn = document.getElementById("theme-toggle");
+    toggleBtn.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+      toggleBtn.textContent = document.documentElement.classList.contains("dark") ? "🌙" : "☀️";
+    });
+  </script>
+</body>
+</html>
