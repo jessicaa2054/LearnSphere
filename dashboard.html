@@ -1,1 +1,154 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syllabus Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900 text-white font-sans min-h-screen">
+
+  <!--  Dashboard Layout  -->
+  <div class="flex flex-col lg:flex-row min-h-screen">
+
+    <!--  Left Sidebar  -->
+    <aside class="w-full lg:w-64 bg-gradient-to-b from-indigo-900 to-gray-900 shadow-lg p-6 flex flex-col justify-between">
+      <div>
+        
+      <!-- Back to Index Page -->
+       <div class="flex gap-2">
+       <img class="rounded-full" src="d.png" width="45px" height="40px">
+      <a href="index.html" class="text-3xl mt-2 font-bold text-amber-400 hover:scale-105 transition-transform duration-300 cursor-pointer">LearnSphere</a>
+        </div>
+        <nav class="space-y-3">
+    <button class=" mt-10 ml-8 text-white font-bold bg-orange-400 w-28 h-14 rounded-lg">  <a href="calender.html">Add Tasks</a></button>
+        </nav>
+      </div>
+      <div class="mt-6 space-y-2">
+        <a href="#" class="block px-3 py-2 text-gray-300 hover:bg-purple-700 rounded-lg text-sm">⚙ Settings</a>
+        <a href="#" class="block px-3 py-2 text-gray-300 hover:bg-purple-700 rounded-lg text-sm">🚪 Logout</a>
+      </div>
+    </aside>
+    
+    <!--  Main Content  -->
+    <main class="flex-1 p-6 overflow-y-auto">
+
+     <h2 class="text-2xl flex justify-center font-bold text-indigo-600 dark:text-indigo-500 mb-6">Dashboard</h2>
+
+
+      <!-- Upload Section -->
+      <div class="bg-gradient-to-r from-indigo-800 to-purple-900 p-6 rounded-xl shadow-lg mb-6 border border-purple-500">
+        <h2 class="text-lg font-bold mb-4 text-purple-200">Upload Your Syllabus (PDF)</h2>
+        <label for="pdfUpload" class="flex flex-col items-center justify-center border-2 border-dashed border-purple-400 rounded-lg p-6 cursor-pointer hover:bg-indigo-900 text-center transition">
+          <svg class="w-12 h-12 text-purple-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4h10v12m-5 4h.01"/>
+          </svg>
+          <span class="text-purple-200 font-medium">Click to upload PDF</span>
+          <input type="file" id="pdfUpload" accept=".pdf" class="hidden">
+        </label>
+      </div>
+
+      <!-- Tabs -->
+      <div class="mb-4 flex gap-4 border-b border-purple-600">
+        <button class="px-4 py-2 text-purple-300 border-b-2 border-purple-400 font-medium">Python</button>
+        <button class="px-4 py-2 text-gray-400 hover:text-purple-300">C Programming Language</button>
+        <button class="px-4 py-2 text-gray-400 hover:text-purple-300">C++ Programming Language</button>
+      </div>
+
+      <!-- Units -->
+      <div class="space-y-4">
+
+      <!---  Progress Counter --->
+      <div class="w-full bg-gray-700 rounded-full h-2 mb-4">
+        <div class="bg-purple-500 h-2 rounded-full" style="width: 40%"></div>
+        </div>
+      <p class="text-gray-400 text-sm">Progress: 4 / 10 topics completed</p>
+
+        <details class="bg-gray-800 shadow rounded-lg p-4">
+          <summary class="cursor-pointer font-semibold text-purple-300">Unit 1: Introduction</summary>
+          <ul class="ml-6 mt-2 list-disc text-gray-400">
+            <li>Programming Language</li>
+            <li>Why?</li>
+            <li>Applications</li>
+          </ul>
+        </details>
+
+        <details class="bg-gray-800 shadow rounded-lg p-4">
+          <summary class="cursor-pointer font-semibold text-purple-300">Unit 2: Basics</summary>
+          <ul class="ml-6 mt-2 list-disc text-gray-400">
+            <li>Basic Theory</li>
+            <li>Baisc Concepts</li>
+          </ul>
+        </details>
+
+        <details class="bg-gray-800 shadow rounded-lg p-4">
+          <summary class="cursor-pointer font-semibold text-purple-300">Unit 3: DataTypes</summary>
+          <ul class="ml-6 mt-2 list-disc text-gray-400">
+            <li>Integer</li>
+            <li>Float</li>
+            <li>String</li>
+            <li>Boolean</li>
+            <li>...</li>
+          </ul>
+        </details>
+
+        <details class="bg-gray-800 shadow rounded-lg p-4">
+          <summary class="cursor-pointer font-semibold text-purple-300">Unit 4: String</summary>
+          <ul class="ml-6 mt-2 list-disc text-gray-400">
+            <li>what is String?</li>
+            <li>Basic Syntax</li>
+          </ul>
+        </details>
+
+      <details class="bg-gray-800 shadow rounded-lg p-4">
+          <summary class="cursor-pointer font-semibold text-purple-300">Unit 5: List</summary>
+          <ul class="ml-6 mt-2 list-disc text-gray-400">
+            <li>what is List?</li>
+            <li>Basic Syntax</li>
+            <li>Indexing</li>
+            <li>2D List</li>
+          </ul>
+        </details>
+        
+      <details class="bg-gray-800 shadow rounded-lg p-4">
+          <summary class="cursor-pointer font-semibold text-purple-300">Unit 6: Array</summary>
+          <ul class="ml-6 mt-2 list-disc text-gray-400">
+            <li>what is Array?</li>
+            <li>Basic Syntax</li>
+          </ul>
+        </details>
+
+      </div>
+    </main>
+
+    <!--  Right Sidebar  -->
+    <aside class="w-full lg:w-72 bg-gradient-to-b from-indigo-900 to-gray-900 shadow-lg p-6 mt-4 lg:mt-0 hidden md:block">
+      <div class="text-center mb-6">
+        
+        <img src="https://via.placeholder.com/80" class="w-20 h-20 rounded-full mx-auto mb-2 border-2 border-purple-500" alt="Profile">
+        <h3 class="font-bold text-white">Hey! , Alex</h3>
+        <p class="text-sm text-gray-400">Good to see you here , Keep learning 🎯</p>
+      </div>
+
+      <h4 class="font-semibold text-purple-300 mb-3">Your Mentors</h4>
+      <ul class="space-y-3">
+        <li class="flex justify-between items-center">
+          <span class="text-gray-300 text-sm">Mentor : Python</span>
+          <button class="text-xs text-white bg-orange-400 hover:bg-purple-500 px-3 py-1 rounded">Follow</button>
+        </li>
+        <li class="flex justify-between items-center">
+          <span class="text-gray-300 text-sm">Mentor : CP</span>
+          <button class="text-xs text-white bg-orange-400 hover:bg-purple-500 px-3 py-1 rounded">Follow</button>
+        </li>
+        <li class="flex justify-between items-center">
+          <span class="text-gray-300 text-sm">Mentor : CPP</span>
+          <button class="text-xs text-white bg-orange-400 hover:bg-purple-500 px-3 py-1 rounded">Follow</button>
+        </li>
+
+      </ul>
+    </aside>
+
+  </div>
+</body>
+</html>
