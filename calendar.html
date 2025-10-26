@@ -6,296 +6,509 @@
     <title>Student Planner</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen">
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Header -->
-        <header class="flex flex-col md:flex-row justify-between items-center mb-8 border-b-2 border-blue-500 pb-4">
-            <div class="flex items-center space-x-3 mb-4 md:mb-0">
-                <div class="bg-blue-500 p-3 rounded-full">
-                    <i class="fas fa-calendar-days text-white text-xl"></i>
-                </div>
-                <h1 class="text-2xl font-bold text-gray-800">Student Planner</h1>
-            </div>
-            <div class="flex items-center space-x-3">
-                <div class="relative">
-                    <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-40 md:w-56">
-                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                </div>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">New Note</button>
-            </div>
-        </header>
+    <div id="root" class="container mx-auto px-4 py-8 max-w-6xl"></div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Left Column -->
-            <div class="lg:col-span-2 space-y-6">
-                <!-- Calendar Section -->
-                <div class="bg-white rounded-lg shadow p-4 md:p-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-bold text-gray-800">September 2023</h2>
-                        <div class="flex space-x-2">
-                            <button class="bg-gray-100 p-2 rounded"><i class="fas fa-chevron-left text-gray-600"></i></button>
-                            <button class="bg-blue-500 text-white p-2 rounded text-sm">Today</button>
-                            <button class="bg-gray-100 p-2 rounded"><i class="fas fa-chevron-right text-gray-600"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-7 gap-1 mb-2">
-                        <div class="text-center text-sm font-medium text-gray-500 py-2">Sun</div>
-                        <div class="text-center text-sm font-medium text-gray-500 py-2">Mon</div>
-                        <div class="text-center text-sm font-medium text-gray-500 py-2">Tue</div>
-                        <div class="text-center text-sm font-medium text-gray-500 py-2">Wed</div>
-                        <div class="text-center text-sm font-medium text-gray-500 py-2">Thu</div>
-                        <div class="text-center text-sm font-medium text-gray-500 py-2">Fri</div>
-                        <div class="text-center text-sm font-medium text-gray-500 py-2">Sat</div>
-                    </div>
-                    
-                    <div class="grid grid-cols-7 gap-1">
-                        <!-- Calendar days -->
-                        <div class="text-center p-2 text-gray-400 text-sm">27</div>
-                        <div class="text-center p-2 text-gray-400 text-sm">28</div>
-                        <div class="text-center p-2 text-gray-400 text-sm">29</div>
-                        <div class="text-center p-2 text-gray-400 text-sm">30</div>
-                        <div class="text-center p-2 text-gray-400 text-sm">31</div>
-                        <div class="text-center p-2 border rounded bg-blue-50 text-sm">1</div>
-                        <div class="text-center p-2 border rounded text-sm">2</div>
-                        <div class="text-center p-2 border rounded text-sm">3</div>
-                        <div class="text-center p-2 border rounded text-sm">4</div>
-                        <div class="text-center p-2 border rounded text-sm">5</div>
-                        <div class="text-center p-2 border rounded text-sm">6</div>
-                        <div class="text-center p-2 border rounded text-sm">7</div>
-                        <div class="text-center p-2 border rounded text-sm">8</div>
-                        <div class="text-center p-2 border rounded bg-blue-500 text-white font-bold text-sm">9</div>
-                        <div class="text-center p-2 border rounded text-sm">10</div>
-                        <div class="text-center p-2 border rounded text-sm">11</div>
-                        <div class="text-center p-2 border rounded text-sm">12</div>
-                        <div class="text-center p-2 border rounded text-sm">13</div>
-                        <div class="text-center p-2 border rounded text-sm">14</div>
-                        <div class="text-center p-2 border rounded text-sm">15</div>
-                        <div class="text-center p-2 border rounded text-sm">16</div>
-                        <div class="text-center p-2 border rounded text-sm">17</div>
-                        <div class="text-center p-2 border rounded text-sm">18</div>
-                        <div class="text-center p-2 border rounded text-sm">19</div>
-                        <div class="text-center p-2 border rounded text-sm">20</div>
-                        <div class="text-center p-2 border rounded text-sm">21</div>
-                        <div class="text-center p-2 border rounded text-sm">22</div>
-                        <div class="text-center p-2 border rounded text-sm">23</div>
-                        <div class="text-center p-2 border rounded text-sm">24</div>
-                        <div class="text-center p-2 border rounded text-sm">25</div>
-                        <div class="text-center p-2 border rounded text-sm">26</div>
-                        <div class="text-center p-2 border rounded text-sm">27</div>
-                        <div class="text-center p-2 border rounded text-sm">28</div>
-                        <div class="text-center p-2 border rounded text-sm">29</div>
-                        <div class="text-center p-2 border rounded text-sm">30</div>
-                    </div>
-                </div>
-
-                <!-- Weekly Planner -->
-                <div class="bg-white rounded-lg shadow p-4 md:p-6">
-                    <h2 class="text-lg font-bold text-gray-800 mb-4">Weekly Planner</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-7 gap-2">
-                        <div class="text-center">
-                            <div class="font-medium text-gray-700 text-sm">Mon</div>
-                            <div class="text-xs text-gray-500">4</div>
-                            <div class="mt-2 space-y-1">
-                                <div class="bg-blue-100 text-xs p-1 rounded">Math 9:00 AM</div>
-                                <div class="bg-green-100 text-xs p-1 rounded">Physics 2:00 PM</div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="font-medium text-gray-700 text-sm">Tue</div>
-                            <div class="text-xs text-gray-500">5</div>
-                            <div class="mt-2 space-y-1">
-                                <div class="bg-purple-100 text-xs p-1 rounded">History 10:00 AM</div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="font-medium text-gray-700 text-sm">Wed</div>
-                            <div class="text-xs text-gray-500">6</div>
-                            <div class="mt-2 space-y-1">
-                                <div class="bg-yellow-100 text-xs p-1 rounded">English 11:00 AM</div>
-                                <div class="bg-red-100 text-xs p-1 rounded">Lab 3:00 PM</div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="font-medium text-gray-700 text-sm">Thu</div>
-                            <div class="text-xs text-gray-500">7</div>
-                            <div class="mt-2 space-y-1">
-                                <div class="bg-indigo-100 text-xs p-1 rounded">Math 9:00 AM</div>
-                                <div class="bg-pink-100 text-xs p-1 rounded">Seminar 4:00 PM</div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="font-medium text-gray-700 text-sm">Fri</div>
-                            <div class="text-xs text-gray-500">8</div>
-                            <div class="mt-2 space-y-1">
-                                <div class="bg-green-100 text-xs p-1 rounded">Physics 1:00 PM</div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="font-medium text-gray-700 text-sm">Sat</div>
-                            <div class="text-xs text-gray-500">9</div>
-                            <div class="mt-2 space-y-1">
-                                <div class="bg-blue-100 text-xs p-1 rounded">Study Group 2:00 PM</div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <div class="font-medium text-gray-700 text-sm">Sun</div>
-                            <div class="text-xs text-gray-500">10</div>
-                            <div class="mt-2 space-y-1">
-                                <div class="bg-gray-100 text-xs p-1 rounded">Rest Day</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column -->
-            <div class="space-y-6">
-                <!-- Exam Countdown -->
-                <div class="bg-white rounded-lg shadow p-4 md:p-6">
-                    <h2 class="text-lg font-bold text-gray-800 mb-3">Exam Countdown</h2>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center p-3 bg-red-50 rounded">
-                            <div>
-                                <h3 class="font-medium text-sm">Physics Final</h3>
-                                <p class="text-xs text-gray-600">December 15, 2023</p>
-                            </div>
-                            <div class="text-red-500 font-bold text-sm">76 days</div>
-                        </div>
-                        <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
-                            <div>
-                                <h3 class="font-medium text-sm">Math Midterm</h3>
-                                <p class="text-xs text-gray-600">October 20, 2023</p>
-                            </div>
-                            <div class="text-blue-500 font-bold text-sm">41 days</div>
-                        </div>
-                        <div class="flex justify-between items-center p-3 bg-green-50 rounded">
-                            <div>
-                                <h3 class="font-medium text-sm">History Paper Due</h3>
-                                <p class="text-xs text-gray-600">October 5, 2023</p>
-                            </div>
-                            <div class="text-green-500 font-bold text-sm">26 days</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Daily Reminders -->
-                <div class="bg-white rounded-lg shadow p-4 md:p-6">
-                    <h2 class="text-lg font-bold text-gray-800 mb-3">Daily Reminders</h2>
-                    <div class="space-y-2">
-                        <div class="flex items-center space-x-2">
-                            <input type="checkbox" class="h-4 w-4 text-blue-500 rounded">
-                            <label class="text-gray-700 text-sm">Submit Math assignment</label>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <input type="checkbox" class="h-4 w-4 text-blue-500 rounded">
-                            <label class="text-gray-700 text-sm">Prepare for Physics quiz</label>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <input type="checkbox" class="h-4 w-4 text-blue-500 rounded" checked>
-                            <label class="text-gray-700 text-sm line-through">Buy textbooks</label>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <input type="checkbox" class="h-4 w-4 text-blue-500 rounded">
-                            <label class="text-gray-700 text-sm">Schedule group study session</label>
-                        </div>
-                    </div>
-                    <button class="mt-3 w-full bg-gray-100 text-gray-700 py-2 rounded text-sm hover:bg-gray-200 transition">Add New Reminder</button>
-                </div>
-
-                <!-- Notes Hub -->
-                <div class="bg-white rounded-lg shadow p-4 md:p-6">
-                    <h2 class="text-lg font-bold text-gray-800 mb-3">Notes Hub</h2>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="bg-blue-50 p-3 rounded">
-                            <div class="flex justify-between items-start">
-                                <h3 class="font-medium text-sm">Physics Notes</h3>
-                                <i class="fas fa-ellipsis-v text-gray-400 text-xs"></i>
-                            </div>
-                            <p class="text-xs text-gray-600 mt-1">Quantum mechanics concepts</p>
-                        </div>
-                        <div class="bg-green-50 p-3 rounded">
-                            <div class="flex justify-between items-start">
-                                <h3 class="font-medium text-sm">Math Formulas</h3>
-                                <i class="fas fa-ellipsis-v text-gray-400 text-xs"></i>
-                            </div>
-                            <p class="text-xs text-gray-600 mt-1">Calculus derivatives</p>
-                        </div>
-                        <div class="bg-yellow-50 p-3 rounded">
-                            <div class="flex justify-between items-start">
-                                <h3 class="font-medium text-sm">History Essay</h3>
-                                <i class="fas fa-ellipsis-v text-gray-400 text-xs"></i>
-                            </div>
-                            <p class="text-xs text-gray-600 mt-1">World War II analysis</p>
-                        </div>
-                        <div class="bg-red-50 p-3 rounded">
-                            <div class="flex justify-between items-start">
-                                <h3 class="font-medium text-sm">Literature Review</h3>
-                                <i class="fas fa-ellipsis-v text-gray-400 text-xs"></i>
-                            </div>
-                            <p class="text-xs text-gray-600 mt-1">Shakespeare themes</p>
-                        </div>
-                    </div>
-                    <button class="mt-3 w-full bg-blue-500 text-white py-2 rounded text-sm hover:bg-blue-600 transition">View All Notes</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Settings Panel -->
-        <div class="mt-8 bg-white rounded-lg shadow p-4 md:p-6">
-            <h2 class="text-lg font-bold text-gray-800 mb-4">Settings</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                <div>
-                    <h3 class="font-medium text-gray-700 text-sm mb-2">Profile</h3>
-                    <div class="flex items-center space-x-3 mb-3">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">JS</div>
-                        <div>
-                            <p class="font-medium text-sm">John Smith</p>
-                            <p class="text-xs text-gray-600">Computer Science</p>
-                        </div>
-                    </div>
-                    <button class="w-full bg-gray-100 text-gray-700 py-2 rounded text-sm hover:bg-gray-200 transition">Edit Profile</button>
-                </div>
+    <script type="text/babel">
+        // Main React Component
+        const StudentPlanner = () => {
+            // State for the current date
+            const [currentDate, setCurrentDate] = React.useState(new Date());
+            
+            // State for reminders
+            const [reminders, setReminders] = React.useState([
+                { id: 1, text: "Submit Math assignment", completed: false },
+                { id: 2, text: "Prepare for Physics quiz", completed: false },
+                { id: 3, text: "Buy textbooks", completed: true },
+                { id: 4, text: "Schedule group study session", completed: false }
+            ]);
+            
+            // State for new reminder input
+            const [newReminder, setNewReminder] = React.useState("");
+            
+            // State for search functionality
+            const [searchTerm, setSearchTerm] = React.useState("");
+            
+            // State for dark mode
+            const [darkMode, setDarkMode] = React.useState(false);
+            
+            // State for notifications
+            const [emailNotifications, setEmailNotifications] = React.useState(true);
+            const [pushNotifications, setPushNotifications] = React.useState(true);
+            
+            // State for selected day in calendar
+            const [selectedDay, setSelectedDay] = React.useState(new Date().getDate());
+            
+            // Function to navigate to previous month
+            const prevMonth = () => {
+                setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+            };
+            
+            // Function to navigate to next month
+            const nextMonth = () => {
+                setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+            };
+            
+            // Function to go to today
+            const goToToday = () => {
+                setCurrentDate(new Date());
+                setSelectedDay(new Date().getDate());
+            };
+            
+            // Function to toggle reminder completion
+            const toggleReminder = (id) => {
+                setReminders(reminders.map(reminder => 
+                    reminder.id === id ? {...reminder, completed: !reminder.completed} : reminder
+                ));
+            };
+            
+            // Function to add a new reminder
+            const addReminder = () => {
+                if (newReminder.trim() !== "") {
+                    const newReminderObj = {
+                        id: reminders.length + 1,
+                        text: newReminder,
+                        completed: false
+                    };
+                    setReminders([...reminders, newReminderObj]);
+                    setNewReminder("");
+                }
+            };
+            
+            // Function to handle key press for adding reminder
+            const handleKeyPress = (e) => {
+                if (e.key === 'Enter') {
+                    addReminder();
+                }
+            };
+            
+            // Function to calculate days until exam
+            const daysUntil = (examDate) => {
+                const today = new Date();
+                const targetDate = new Date(examDate);
+                const diffTime = targetDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays;
+            };
+            
+            // Function to generate calendar days
+            const generateCalendarDays = () => {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
                 
-                <div>
-                    <h3 class="font-medium text-gray-700 text-sm mb-2">Theme</h3>
-                    <div class="flex space-x-2 mb-3">
-                        <div class="w-8 h-8 bg-blue-500 rounded cursor-pointer"></div>
-                        <div class="w-8 h-8 bg-purple-500 rounded cursor-pointer"></div>
-                        <div class="w-8 h-8 bg-green-500 rounded cursor-pointer"></div>
-                        <div class="w-8 h-8 bg-red-500 rounded cursor-pointer"></div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700 text-sm">Dark Mode</span>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" class="sr-only peer">
-                            <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
-                        </label>
-                    </div>
-                </div>
+                // First day of the month
+                const firstDay = new Date(year, month, 1);
+                // Last day of the month
+                const lastDay = new Date(year, month + 1, 0);
+                // Days in the month
+                const daysInMonth = lastDay.getDate();
+                // First day of the week (0 = Sunday, 1 = Monday, etc.)
+                const firstDayOfWeek = firstDay.getDay();
                 
-                <div>
-                    <h3 class="font-medium text-gray-700 text-sm mb-2">Notifications</h3>
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-700 text-sm">Email Notifications</span>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="sr-only peer" checked>
-                                <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
-                            </label>
+                // Previous month days
+                const prevMonthLastDay = new Date(year, month, 0).getDate();
+                
+                const days = [];
+                
+                // Previous month days
+                for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+                    days.push(
+                        <div key={`prev-${i}`} className="text-center p-2 text-gray-400 text-sm">
+                            {prevMonthLastDay - i}
                         </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-700 text-sm">Push Notifications</span>
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="sr-only peer" checked>
-                                <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
-                            </label>
+                    );
+                }
+                
+                // Current month days
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const isToday = i === new Date().getDate() && 
+                                   month === new Date().getMonth() && 
+                                   year === new Date().getFullYear();
+                    const isSelected = i === selectedDay;
+                    
+                    days.push(
+                        <div 
+                            key={`current-${i}`} 
+                            className={`text-center p-2 border rounded text-sm cursor-pointer ${
+                                isToday ? 'bg-blue-500 text-white font-bold' : 
+                                isSelected ? 'bg-blue-100' : ''
+                            }`}
+                            onClick={() => setSelectedDay(i)}
+                        >
+                            {i}
+                        </div>
+                    );
+                }
+                
+                // Next month days
+                const totalCells = 42; // 6 rows x 7 days
+                const nextMonthDays = totalCells - days.length;
+                
+                for (let i = 1; i <= nextMonthDays; i++) {
+                    days.push(
+                        <div key={`next-${i}`} className="text-center p-2 text-gray-400 text-sm">
+                            {i}
+                        </div>
+                    );
+                }
+                
+                return days;
+            };
+            
+            // Function to get month name
+            const getMonthName = () => {
+                return currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+            };
+            
+            // Filtered reminders based on search
+            const filteredReminders = reminders.filter(reminder => 
+                reminder.text.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            
+            // Apply dark mode class to body
+            React.useEffect(() => {
+                if (darkMode) {
+                    document.body.classList.add('bg-gray-900');
+                    document.body.classList.remove('bg-gray-50');
+                } else {
+                    document.body.classList.remove('bg-gray-900');
+                    document.body.classList.add('bg-gray-50');
+                }
+            }, [darkMode]);
+            
+            return (
+                <div className={darkMode ? 'text-white' : ''}>
+                    {/* Header */}
+                    <header className={`flex flex-col md:flex-row justify-between items-center mb-8 border-b-2 border-blue-500 pb-4 ${darkMode ? 'border-blue-400' : ''}`}>
+                        <div className="flex items-center space-x-3 mb-4 md:mb-0">
+                            <div className={`p-3 rounded-full ${darkMode ? 'bg-blue-400' : 'bg-blue-500'}`}>
+                                <i className="fas fa-calendar-days text-white text-xl"></i>
+                            </div>
+                            <h1 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>Student Planner</h1>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                            <div className="relative">
+                                <input 
+                                    type="text" 
+                                    placeholder="Search..." 
+                                    className={`pl-10 pr-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500 w-40 md:w-56 ${
+                                        darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'border-gray-300'
+                                    }`}
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                                <i className="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                            </div>
+                            <button className={`px-4 py-2 rounded-lg transition ${
+                                darkMode ? 'bg-blue-400 hover:bg-blue-500 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
+                            }`}>
+                                New Note
+                            </button>
+                        </div>
+                    </header>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {/* Left Column */}
+                        <div className="lg:col-span-2 space-y-6">
+                            {/* Calendar Section */}
+                            <div className={`rounded-lg shadow p-4 md:p-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                                <div className="flex justify-between items-center mb-4">
+                                    <h2 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                                        {getMonthName()}
+                                    </h2>
+                                    <div className="flex space-x-2">
+                                        <button 
+                                            className={`p-2 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}
+                                            onClick={prevMonth}
+                                        >
+                                            <i className={`fas fa-chevron-left ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}></i>
+                                        </button>
+                                        <button 
+                                            className={`p-2 rounded text-sm ${
+                                                darkMode ? 'bg-blue-400 hover:bg-blue-500 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
+                                            }`}
+                                            onClick={goToToday}
+                                        >
+                                            Today
+                                        </button>
+                                        <button 
+                                            className={`p-2 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'}`}
+                                            onClick={nextMonth}
+                                        >
+                                            <i className={`fas fa-chevron-right ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div className="grid grid-cols-7 gap-1 mb-2">
+                                    {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                                        <div key={day} className={`text-center text-sm font-medium py-2 ${
+                                            darkMode ? 'text-gray-400' : 'text-gray-500'
+                                        }`}>
+                                            {day}
+                                        </div>
+                                    ))}
+                                </div>
+                                
+                                <div className="grid grid-cols-7 gap-1">
+                                    {generateCalendarDays()}
+                                </div>
+                            </div>
+
+                            {/* Weekly Planner */}
+                            <div className={`rounded-lg shadow p-4 md:p-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                                <h2 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Weekly Planner</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-7 gap-2">
+                                    {[
+                                        { day: 'Mon', date: 4, events: ['Math 9:00 AM', 'Physics 2:00 PM'] },
+                                        { day: 'Tue', date: 5, events: ['History 10:00 AM'] },
+                                        { day: 'Wed', date: 6, events: ['English 11:00 AM', 'Lab 3:00 PM'] },
+                                        { day: 'Thu', date: 7, events: ['Math 9:00 AM', 'Seminar 4:00 PM'] },
+                                        { day: 'Fri', date: 8, events: ['Physics 1:00 PM'] },
+                                        { day: 'Sat', date: 9, events: ['Study Group 2:00 PM'] },
+                                        { day: 'Sun', date: 10, events: ['Rest Day'] }
+                                    ].map((dayInfo, index) => (
+                                        <div key={index} className="text-center">
+                                            <div className={`font-medium text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                                {dayInfo.day}
+                                            </div>
+                                            <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
+                                                {dayInfo.date}
+                                            </div>
+                                            <div className="mt-2 space-y-1">
+                                                {dayInfo.events.map((event, eventIndex) => {
+                                                    const bgColors = [
+                                                        'bg-blue-100', 'bg-green-100', 'bg-purple-100', 
+                                                        'bg-yellow-100', 'bg-red-100', 'bg-indigo-100', 
+                                                        'bg-pink-100', 'bg-gray-100'
+                                                    ];
+                                                    const darkBgColors = [
+                                                        'bg-blue-900', 'bg-green-900', 'bg-purple-900',
+                                                        'bg-yellow-900', 'bg-red-900', 'bg-indigo-900',
+                                                        'bg-pink-900', 'bg-gray-700'
+                                                    ];
+                                                    const colorClass = darkMode 
+                                                        ? `${darkBgColors[eventIndex % darkBgColors.length]} text-gray-200`
+                                                        : `${bgColors[eventIndex % bgColors.length]} text-gray-800`;
+                                                    
+                                                    return (
+                                                        <div key={eventIndex} className={`text-xs p-1 rounded ${colorClass}`}>
+                                                            {event}
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column */}
+                        <div className="space-y-6">
+                            {/* Exam Countdown */}
+                            <div className={`rounded-lg shadow p-4 md:p-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                                <h2 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Exam Countdown</h2>
+                                <div className="space-y-3">
+                                    {[
+                                        { name: 'Physics Final', date: 'December 15, 2023', color: 'red' },
+                                        { name: 'Math Midterm', date: 'October 20, 2023', color: 'blue' },
+                                        { name: 'History Paper Due', date: 'October 5, 2023', color: 'green' }
+                                    ].map((exam, index) => {
+                                        const daysLeft = daysUntil(exam.date);
+                                        const bgColor = darkMode 
+                                            ? `bg-${exam.color}-900` 
+                                            : `bg-${exam.color}-50`;
+                                        const textColor = darkMode 
+                                            ? `text-${exam.color}-300` 
+                                            : `text-${exam.color}-500`;
+                                        
+                                        return (
+                                            <div key={index} className={`flex justify-between items-center p-3 rounded ${bgColor}`}>
+                                                <div>
+                                                    <h3 className={`font-medium text-sm ${darkMode ? 'text-white' : ''}`}>{exam.name}</h3>
+                                                    <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{exam.date}</p>
+                                                </div>
+                                                <div className={`font-bold text-sm ${textColor}`}>{daysLeft} days</div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* Daily Reminders */}
+                            <div className={`rounded-lg shadow p-4 md:p-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                                <h2 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Daily Reminders</h2>
+                                <div className="space-y-2">
+                                    {filteredReminders.map(reminder => (
+                                        <div key={reminder.id} className="flex items-center space-x-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="h-4 w-4 text-blue-500 rounded"
+                                                checked={reminder.completed}
+                                                onChange={() => toggleReminder(reminder.id)}
+                                            />
+                                            <label className={`text-sm ${reminder.completed ? 'line-through' : ''} ${
+                                                darkMode ? 'text-gray-300' : 'text-gray-700'
+                                            }`}>
+                                                {reminder.text}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="flex mt-3">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Add new reminder..." 
+                                        className={`flex-grow py-2 px-3 rounded-l text-sm ${
+                                            darkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-700'
+                                        }`}
+                                        value={newReminder}
+                                        onChange={(e) => setNewReminder(e.target.value)}
+                                        onKeyPress={handleKeyPress}
+                                    />
+                                    <button 
+                                        className={`py-2 px-4 rounded-r text-sm ${
+                                            darkMode ? 'bg-blue-400 hover:bg-blue-500 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
+                                        }`}
+                                        onClick={addReminder}
+                                    >
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Notes Hub */}
+                            <div className={`rounded-lg shadow p-4 md:p-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                                <h2 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Notes Hub</h2>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[
+                                        { title: 'Physics Notes', desc: 'Quantum mechanics concepts', color: 'blue' },
+                                        { title: 'Math Formulas', desc: 'Calculus derivatives', color: 'green' },
+                                        { title: 'History Essay', desc: 'World War II analysis', color: 'yellow' },
+                                        { title: 'Literature Review', desc: 'Shakespeare themes', color: 'red' }
+                                    ].map((note, index) => {
+                                        const bgColor = darkMode 
+                                            ? `bg-${note.color}-900` 
+                                            : `bg-${note.color}-50`;
+                                        
+                                        return (
+                                            <div key={index} className={`p-3 rounded ${bgColor}`}>
+                                                <div className="flex justify-between items-start">
+                                                    <h3 className={`font-medium text-sm ${darkMode ? 'text-white' : ''}`}>{note.title}</h3>
+                                                    <i className="fas fa-ellipsis-v text-gray-400 text-xs"></i>
+                                                </div>
+                                                <p className={`text-xs mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                                    {note.desc}
+                                                </p>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                <button className={`mt-3 w-full py-2 rounded text-sm transition ${
+                                    darkMode ? 'bg-blue-400 hover:bg-blue-500 text-white' : 'bg-blue-500 hover:bg-blue-600 text-white'
+                                }`}>
+                                    View All Notes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Settings Panel */}
+                    <div className={`mt-8 rounded-lg shadow p-4 md:p-6 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+                        <h2 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Settings</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                            <div>
+                                <h3 className={`font-medium text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Profile</h3>
+                                <div className="flex items-center space-x-3 mb-3">
+                                    <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">KK</div>
+                                    <div>
+                                        <p className={`font-medium text-sm ${darkMode ? 'text-white' : ''}`}>Khushpreet Kaur</p>
+                                        <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Computer Science</p>
+                                    </div>
+                                </div>
+                                <button className={`w-full py-2 rounded text-sm transition ${
+                                    darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                                }`}>
+                                    Edit Profile
+                                </button>
+                            </div>
+                            
+                            <div>
+                                <h3 className={`font-medium text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Theme</h3>
+                                <div className="flex space-x-2 mb-3">
+                                    <div 
+                                        className="w-8 h-8 bg-blue-500 rounded cursor-pointer"
+                                        onClick={() => setDarkMode(false)}
+                                    ></div>
+                                    <div 
+                                        className="w-8 h-8 bg-purple-500 rounded cursor-pointer"
+                                        onClick={() => setDarkMode(false)}
+                                    ></div>
+                                    <div 
+                                        className="w-8 h-8 bg-green-500 rounded cursor-pointer"
+                                        onClick={() => setDarkMode(false)}
+                                    ></div>
+                                    <div 
+                                        className="w-8 h-8 bg-red-500 rounded cursor-pointer"
+                                        onClick={() => setDarkMode(false)}
+                                    ></div>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Dark Mode</span>
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input 
+                                            type="checkbox" 
+                                            className="sr-only peer" 
+                                            checked={darkMode}
+                                            onChange={() => setDarkMode(!darkMode)}
+                                        />
+                                        <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 className={`font-medium text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Notifications</h3>
+                                <div className="space-y-2">
+                                    <div className="flex items-center justify-between">
+                                        <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Email Notifications</span>
+                                        <label className="relative inline-flex items-center cursor-pointer">
+                                            <input 
+                                                type="checkbox" 
+                                                className="sr-only peer" 
+                                                checked={emailNotifications}
+                                                onChange={() => setEmailNotifications(!emailNotifications)}
+                                            />
+                                            <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                                        </label>
+                                    </div>
+                                    <div className="flex items-center justify-between">
+                                        <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Push Notifications</span>
+                                        <label className="relative inline-flex items-center cursor-pointer">
+                                            <input 
+                                                type="checkbox" 
+                                                className="sr-only peer" 
+                                                checked={pushNotifications}
+                                                onChange={() => setPushNotifications(!pushNotifications)}
+                                            />
+                                            <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-500"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            );
+        };
+
+        // Render the React component
+        ReactDOM.render(<StudentPlanner />, document.getElementById('root'));
+    </script>
 </body>
 </html>
